@@ -10,16 +10,22 @@ import org.springframework.data.domain.Sort;
 @Builder
 @AllArgsConstructor
 @Data
-public class PageRequestDTO { //페이지번호 페이지 내 목록 갯수 검색 조건등을 dto로 선언하고 재사용
+public class PageRequestDTO {
+
     private int page;
     private int size;
+    private String type;
+    private String keyword;
+
 
     public PageRequestDTO(){
         this.page = 1;
         this.size = 10;
     }
 
-    public Pageable getPageable(Sort sort) {
-        return PageRequest.of(page - 1, size, sort); //PageRequest.of()를 이용해 Pageable 구현체를 만들 수 있다.
+    public Pageable getPageable(Sort sort){
+
+        return PageRequest.of(page -1, size, sort);
+
     }
 }
